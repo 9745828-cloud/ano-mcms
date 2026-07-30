@@ -1138,6 +1138,18 @@ input,textarea{font-family:inherit}
   </div>
 </footer>
 
+<!-- Easter egg overlay (hidden credits) -->
+<div class="egg-root" id="egg-root" hidden aria-hidden="true">
+  <div class="egg-backdrop" data-egg-close="1" tabindex="-1"></div>
+  <div class="egg-card" role="dialog" aria-modal="true" aria-labelledby="egg-title" aria-describedby="egg-desc">
+    <button type="button" class="egg-close" data-egg-close="1" aria-label="Закрыть">×</button>
+    <p class="egg-kicker" id="egg-title">пасхалка</p>
+    <p class="egg-text">Этот сайт почти вручную собрали 4&nbsp;друга</p>
+    <p class="egg-names" id="egg-desc">Дмитрий&nbsp;Ш × Денис&nbsp;Х × Claude × Grok</p>
+    <p class="egg-note">просто потому что могли</p>
+  </div>
+</div>
+
 <!-- ════════════════════════════════════════════════════════════════
      JAVASCRIPT — Modules
      NavModule · RevealModule · LineDrawModule
@@ -1450,6 +1462,7 @@ input,textarea{font-family:inherit}
   var WINDOW_MS = 2500;
   var SHOW_MS = 8000;
 
+  function boot(){
   var trigger = document.getElementById('egg-trigger');
   var root = document.getElementById('egg-root');
   if(!trigger || !root) return;
@@ -1522,20 +1535,15 @@ input,textarea{font-family:inherit}
   document.addEventListener('keydown', function(e){
     if(open && e.key === 'Escape') hide();
   });
+  } // boot
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 })();
 </script>
-
-<!-- Easter egg overlay (hidden credits) -->
-<div class="egg-root" id="egg-root" hidden aria-hidden="true">
-  <div class="egg-backdrop" data-egg-close="1" tabindex="-1"></div>
-  <div class="egg-card" role="dialog" aria-modal="true" aria-labelledby="egg-title" aria-describedby="egg-desc">
-    <button type="button" class="egg-close" data-egg-close="1" aria-label="Закрыть">×</button>
-    <p class="egg-kicker" id="egg-title">пасхалка</p>
-    <p class="egg-text">Этот сайт почти вручную собрали 4&nbsp;друга</p>
-    <p class="egg-names" id="egg-desc">Дмитрий&nbsp;Ш × Денис&nbsp;Х × Claude × Grok</p>
-    <p class="egg-note">просто потому что могли</p>
-  </div>
-</div>
 
 </body>
 </html>
